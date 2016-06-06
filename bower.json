@@ -1,0 +1,13 @@
+{
+  "name": "CanvasManager",
+  "main": "index.js",
+  "authors": [
+    "kotborealis <kotborealis@gmail.com>"
+  ],
+  "description": "Canvas Manager",
+  "keywords": [
+    "canvas"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/kotborealis/"
+}
