@@ -1,20 +1,32 @@
 'use strict';
+/**
+ * CanvasManager class
+ * @param canvas - Canvas element or selector
+ * @param options - Options (fullscreen,width,height,enableDrag)
+ * @constructor
+ */
+export default function(canvas,options={}){
+    if(canvas===undefined)
+        throw new Error("CanvasManager first argument must be canvas element or selector");
+    if(options===undefined)
+        options={};
 
-export default function CanvasManager(canvas,options={}){
+    /**
+     * Default options
+     */
     options.fullscreen=options.fullscreen||false;
     options.width=options.width||800;
     options.height=options.height||600;
     options.enableDrag=options.enableDrag||false;
+
     /**
-     * Canvas
+     * Canvas initialization
      */
-    if(typeof canvas === 'string') {
+    if(typeof canvas === 'string')
         this.e_canvas = document.querySelector(canvas);
-        if(this.e_canvas===null){
-            this.e_canvas = document.createElement('canvas');
-            this.e_canvas.id = canvas;
-            document.body.appendChild(this.e_canvas);
-        }
+    if(this.e_canvas===null) {
+        this.e_canvas = document.createElement('canvas');
+        document.body.appendChild(this.e_canvas);
     }
     else
         this.e_canvas=canvas;
@@ -76,11 +88,11 @@ export default function CanvasManager(canvas,options={}){
         const {x,y}=canvasCoords(e.clientX,e.clientY);
         this.onmouseup({button:e.button,x,y});
     });
-    this.e_canvas.addEventListener('mouseover',e=>{
+    this.e_canvas.addEventListener('mouseover',()=>{
         this.mouse.over=true;
         this.onmouseover();
     });
-    this.e_canvas.addEventListener('mouseout',e=>{
+    this.e_canvas.addEventListener('mouseout',()=>{
         this.mouse.over=false;
         this.onmouseout();
     });
